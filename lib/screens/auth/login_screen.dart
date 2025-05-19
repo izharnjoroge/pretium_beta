@@ -32,13 +32,13 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() async {
     if (_formKey.currentState!.validate()) {
       _authController.setLoading(true);
-      // Simulate a login process
+
       try {
-        if (_emailController.text == 'test@example.com' &&
-            _passwordController.text == 'password123') {
+        if (_emailController.text.isNotEmpty &&
+            _passwordController.text.isNotEmpty) {
           await Future.delayed(const Duration(seconds: 2));
           _authController.setLoading(false);
-          Get.offNamed('/home');
+          Get.offNamed('/pin_creation');
           SnackBarMessages.snackBars("success", "Logged in successfully!");
         } else {
           await Future.delayed(const Duration(seconds: 1));

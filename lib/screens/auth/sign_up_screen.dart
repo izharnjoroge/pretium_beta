@@ -42,7 +42,7 @@ class _SignupScreenState extends State<SignupScreen> {
             _passwordController.text == 'password123') {
           await Future.delayed(const Duration(seconds: 2));
           _authController.setLoading(false);
-          Get.offNamed('/home');
+          Get.offNamed('/pin_creation');
           SnackBarMessages.snackBars("success", "Signed up successfully!");
         } else {
           await Future.delayed(const Duration(seconds: 1));

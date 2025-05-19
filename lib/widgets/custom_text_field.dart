@@ -7,7 +7,7 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-  final String? Function(String?)? validator; // Added validator
+  final String? Function(String?)? validator;
   final TextInputType? keyboardType;
 
   const CustomTextField({
@@ -27,12 +27,13 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
           labelText: labelText,
           hintText: hintText,
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon),
-      validator: validator, // Use the validator
+      validator: validator,
       keyboardType: keyboardType,
     );
   }

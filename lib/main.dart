@@ -3,11 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'core/auth_controller.dart';
-import 'screens/auth/forgot_password_screen.dart';
-import 'screens/auth/login_screen.dart';
-import 'screens/auth/sign_up_screen.dart';
-import 'screens/hero/onboarding_screen.dart';
-import 'screens/main/home_screen.dart';
 import 'utils/constants.dart';
 
 void main() {
@@ -60,13 +55,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       initialRoute: "/on_boarding",
-      getPages: [
-        GetPage(name: '/on_boarding', page: () => OnBoardingScreen()),
-        GetPage(name: '/login', page: () => LoginScreen()),
-        GetPage(name: '/signup', page: () => SignupScreen()),
-        GetPage(name: '/forgot_password', page: () => ForgotPasswordScreen()),
-        GetPage(name: '/home', page: () => HomeScreen()),
-      ],
+      getPages: Constants().screenRoutes,
     );
   }
 }

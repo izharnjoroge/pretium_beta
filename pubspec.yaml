@@ -38,6 +38,8 @@ dependencies:
   introduction_screen: ^3.1.17
   flutter_native_splash: ^2.4.4
   get: ^4.7.2
+  local_auth: ^2.3.0
+  qr_flutter: ^4.1.0
 
 dev_dependencies:
   flutter_test:

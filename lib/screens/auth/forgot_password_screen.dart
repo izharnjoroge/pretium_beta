@@ -33,6 +33,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       _authController.setLoading(false);
       SnackBarMessages.snackBars(
           "success", "Password reset code sent to your email!");
+      Get.offNamed("/reset_password");
     }
   }
 
