@@ -40,12 +40,17 @@ class _HomeScreenState extends State<HomeScreen> {
           'Hello, Jim 👋',
           style: TextStyle(color: Colors.white),
         ),
-        actions: const [
+        actions: [
           Padding(
             padding: EdgeInsets.only(right: 16.0),
-            child: Icon(
-              Icons.notifications_outlined,
-              color: Colors.white,
+            child: IconButton(
+              icon: Icon(
+                Icons.notifications_outlined,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Get.toNamed("/notifications");
+              },
             ),
           ),
         ],
@@ -81,7 +86,7 @@ class WalletBalanceCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         gradient: LinearGradient(
           colors: [
-            Colors.teal.shade600,
+            Colors.teal.shade700,
             Colors.teal.shade900,
           ],
         ),
@@ -96,7 +101,7 @@ class WalletBalanceCard extends StatelessWidget {
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                    color: Colors.teal.shade900,
+                    color: Colors.teal.shade600,
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
@@ -144,7 +149,7 @@ class FinancialServicesGrid extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [BoxShadow(color: Colors.grey.shade400, blurRadius: 5)],
+        boxShadow: [BoxShadow(color: Colors.grey.shade400, blurRadius: 20)],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -232,7 +237,7 @@ class RecentTransactionsSection extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Get.toNamed('transaction_screen');
+                Get.toNamed('/transactions');
               },
               child: const Text('See all'),
             ),

@@ -67,52 +67,54 @@ class _MainScreenState extends State<MainScreen> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(25.0)),
-        child: SizedBox(
-          height: 80.0,
-          child: BottomNavigationBar(
-            elevation: 5,
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.account_balance_wallet,
-                  size: 25,
-                ),
-                label: '',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+          boxShadow: [BoxShadow(color: Colors.grey.shade400, blurRadius: 20)],
+        ),
+        height: 80.0,
+        child: BottomNavigationBar(
+          elevation: 0,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.account_balance_wallet,
+                size: 25,
               ),
-              BottomNavigationBarItem(
-                icon: CircleAvatar(
-                  backgroundColor: Constants.backgroundColor,
-                  child: Icon(
-                    Icons.qr_code_rounded,
-                    size: 35,
-                    color: Colors.white,
-                  ),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: CircleAvatar(
+                backgroundColor: Constants.backgroundColor,
+                child: Icon(
+                  Icons.qr_code_rounded,
+                  size: 35,
+                  color: Colors.white,
                 ),
-                label: '',
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.list_alt,
-                  size: 25,
-                ),
-                label: '',
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.list_alt,
+                size: 25,
               ),
-            ],
-            currentIndex: _selectedIndex,
-            selectedItemColor: Constants.backgroundColor,
-            unselectedItemColor: Colors.grey,
-            onTap: (index) {
-              if (index == 1) {
-                _showFinanceModal(context);
-              } else {
-                _onItemTapped(index);
-              }
-            },
-            backgroundColor: Colors.white,
-            type: BottomNavigationBarType.fixed,
-          ),
+              label: '',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Constants.backgroundColor,
+          unselectedItemColor: Colors.grey,
+          onTap: (index) {
+            if (index == 1) {
+              _showFinanceModal(context);
+            } else {
+              _onItemTapped(index);
+            }
+          },
+          backgroundColor: Colors.transparent,
+          type: BottomNavigationBarType.fixed,
         ),
       ),
     );

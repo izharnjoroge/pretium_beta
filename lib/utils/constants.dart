@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pretium_beta/screens/main/notifications_screen.dart';
 import 'package:pretium_beta/screens/main/transactions_screen.dart';
 import 'package:pretium_beta/utils/color_from_hex.dart';
 
@@ -26,6 +27,7 @@ class Constants {
     GetPage(name: '/main', page: () => MainScreen()),
     GetPage(name: '/home', page: () => HomeScreen()),
     GetPage(name: '/fund_account', page: () => FundAccountScreen()),
-    GetPage(name: '/transaction_screen', page: () => TransactionsScreen()),
+    GetPage(name: '/transactions', page: () => TransactionsScreen()),
+    GetPage(name: '/notifications', page: () => NotificationsScreen()),
   ];
 }
