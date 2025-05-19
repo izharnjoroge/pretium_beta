@@ -7,14 +7,18 @@ class TransactionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Transactions'),
+        title: const Text(
+          'Transactions',
+          style: TextStyle(fontSize: 20),
+        ),
+        centerTitle: true,
       ),
       body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(
-              Icons.receipt_outlined,
+              Icons.receipt_long_outlined,
               size: 80,
               color: Colors.grey,
             ),

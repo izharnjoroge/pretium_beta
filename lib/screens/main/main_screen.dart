@@ -64,28 +64,39 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.vertical(top: Radius.circular(25.0)),
         child: SizedBox(
-          height: 80.0, // Increased height
+          height: 80.0,
           child: BottomNavigationBar(
             elevation: 5,
-            items: const <BottomNavigationBarItem>[
+            items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(Icons.wallet_outlined),
+                icon: Icon(
+                  Icons.account_balance_wallet,
+                  size: 25,
+                ),
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.qr_code_scanner),
+                icon: CircleAvatar(
+                  backgroundColor: Constants.backgroundColor,
+                  child: Icon(
+                    Icons.qr_code_rounded,
+                    size: 35,
+                    color: Colors.white,
+                  ),
+                ),
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.list_alt),
+                icon: Icon(
+                  Icons.list_alt,
+                  size: 25,
+                ),
                 label: '',
               ),
             ],

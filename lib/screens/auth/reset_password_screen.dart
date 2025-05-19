@@ -31,7 +31,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   void _resetPasswordSubmit() async {
     if (_formKey.currentState!.validate()) {
-      // Simulate password reset success
       await Future.delayed(const Duration(seconds: 1));
       _showPasswordResetSuccessDialog();
     }
@@ -99,105 +98,114 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Get.back(),
         ),
-        title: const Text(
-          'Reset Password',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20),
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                const Text(
-                  'Enter the code sent to your email and set\na new password',
-                  style: TextStyle(fontSize: 16.0, color: Colors.black54),
-                ),
-                const SizedBox(height: 32.0),
-                CustomTextField(
-                  labelText: 'Reset Code',
-                  hintText: 'Enter reset code',
-                  controller: _resetCodeController,
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter the reset code';
-                    }
-                    return null;
-                  },
-                  prefixIcon: const Icon(Icons.history),
-                ),
-                const SizedBox(height: 16.0),
-                CustomTextField(
-                  labelText: 'New Password',
-                  hintText: 'Enter new password',
-                  controller: _newPasswordController,
-                  obscureText: _obscureNewPassword,
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscureNewPassword
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _obscureNewPassword = !_obscureNewPassword;
-                      });
-                    },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20),
+          child: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Row(
+                    children: [
+                      const Text(
+                        'Reset Password',
+                        style: TextStyle(
+                            fontSize: 28,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a new password';
-                    }
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
-                    }
-                    return null;
-                  },
-                  prefixIcon: const Icon(Icons.lock_outline),
-                ),
-                const SizedBox(height: 16.0),
-                CustomTextField(
-                  labelText: 'Confirm Password',
-                  hintText: 'Confirm new password',
-                  controller: _confirmPasswordController,
-                  obscureText: _obscureConfirmPassword,
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscureConfirmPassword
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _obscureConfirmPassword = !_obscureConfirmPassword;
-                      });
-                    },
+                  const SizedBox(height: 8.0),
+                  const Text(
+                    'Enter the code sent to your email and set\na new password',
+                    style: TextStyle(fontSize: 16.0, color: Colors.black54),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please confirm your new password';
-                    }
-                    if (value != _newPasswordController.text) {
-                      return 'Passwords do not match';
-                    }
-                    return null;
-                  },
-                  prefixIcon: const Icon(Icons.lock_outline),
-                ),
-                const SizedBox(height: 32.0),
-                Obx(() {
-                  return CustomButton(
-                    text: 'Reset Password',
-                    onPressed: _resetPasswordSubmit,
-                    isLoading: _authController.isLoading.value,
-                  );
-                }),
-              ],
+                  const SizedBox(height: 32.0),
+                  CustomTextField(
+                    labelText: 'Reset Code',
+                    hintText: 'Enter reset code',
+                    controller: _resetCodeController,
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter the reset code';
+                      }
+                      return null;
+                    },
+                    prefixIcon: const Icon(Icons.history),
+                  ),
+                  const SizedBox(height: 16.0),
+                  CustomTextField(
+                    labelText: 'New Password',
+                    hintText: 'Enter new password',
+                    controller: _newPasswordController,
+                    obscureText: _obscureNewPassword,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureNewPassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureNewPassword = !_obscureNewPassword;
+                        });
+                      },
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a new password';
+                      }
+                      if (value.length < 6) {
+                        return 'Password must be at least 6 characters';
+                      }
+                      return null;
+                    },
+                    prefixIcon: const Icon(Icons.lock_outline),
+                  ),
+                  const SizedBox(height: 16.0),
+                  CustomTextField(
+                    labelText: 'Confirm Password',
+                    hintText: 'Confirm new password',
+                    controller: _confirmPasswordController,
+                    obscureText: _obscureConfirmPassword,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureConfirmPassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureConfirmPassword = !_obscureConfirmPassword;
+                        });
+                      },
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please confirm your new password';
+                      }
+                      if (value != _newPasswordController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                    prefixIcon: const Icon(Icons.lock_outline),
+                  ),
+                  const SizedBox(height: 32.0),
+                  Obx(() {
+                    return CustomButton(
+                      text: 'Reset Password',
+                      onPressed: _resetPasswordSubmit,
+                      isLoading: _authController.isLoading.value,
+                    );
+                  }),
+                ],
+              ),
             ),
           ),
         ),

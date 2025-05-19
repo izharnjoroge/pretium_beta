@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/auth_controller.dart';
 import '../../utils/constants.dart';
@@ -23,6 +24,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final _authController = AuthController.to;
   bool _termsAccepted = false;
   bool _obscure = false;
+  final Uri _url = Uri.parse(Constants.terms);
 
   @override
   void dispose() {
@@ -38,18 +40,10 @@ class _SignupScreenState extends State<SignupScreen> {
       _authController.setLoading(true);
 
       try {
-        if (_emailController.text == 'test@example.com' &&
-            _passwordController.text == 'password123') {
-          await Future.delayed(const Duration(seconds: 2));
-          _authController.setLoading(false);
-          Get.offNamed('/pin_creation');
-          SnackBarMessages.snackBars("success", "Signed up successfully!");
-        } else {
-          await Future.delayed(const Duration(seconds: 1));
-          _authController.setLoading(false);
-          SnackBarMessages.snackBars(
-              "error", "Failed to sign up. Please check your information.");
-        }
+        await Future.delayed(const Duration(seconds: 2));
+        _authController.setLoading(false);
+        Get.offNamed('/pin_creation');
+        SnackBarMessages.snackBars("success", "Signed up successfully!");
       } catch (e) {
         _authController.setLoading(false);
         SnackBarMessages.snackBars(
@@ -58,6 +52,12 @@ class _SignupScreenState extends State<SignupScreen> {
     } else if (!_termsAccepted) {
       SnackBarMessages.snackBars(
           "error", "Please accept the terms and conditions.");
+    }
+  }
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
     }
   }
 
@@ -198,7 +198,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       activeColor: Constants.backgroundColor,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        _launchUrl();
+                      },
                       child: Text(
                         'Accept Terms and Conditions',
                         style: TextStyle(

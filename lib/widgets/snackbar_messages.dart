@@ -29,7 +29,12 @@ class SnackBarMessages {
       colorText: Colors.white,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       margin: const EdgeInsets.only(bottom: 40, left: 10, right: 10),
-      icon: SpinningIcon(icon: icon),
+      icon: type == "success"
+          ? Icon(
+              Icons.check_circle_outline_outlined,
+              color: Colors.white,
+            )
+          : SpinningIcon(icon: icon),
       shouldIconPulse: true,
       animationDuration: const Duration(milliseconds: 400),
       duration: const Duration(seconds: 4),

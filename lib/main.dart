@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       navigatorKey: NavigationService.navigatorKey,
-      title: 'Pretium Replica',
+      title: 'Pretium Clone',
       theme: ThemeData(
         fontFamily: 'OpenSans',
         primaryColor: Constants.backgroundColor,
